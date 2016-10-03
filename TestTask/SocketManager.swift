@@ -8,6 +8,7 @@
 
 import Foundation
 import SocketIO
+//import JSQMessagesViewController
 
 struct DateCommand {
     var author: String?
@@ -39,7 +40,7 @@ class SocketManager {
     private let client = SocketIOClient(socketURL: URL(string: "http://demo-chat.ottonova.de")!, config: [.log(false), .forcePolling(true)])
     
     var messageHandler: ((String?, String?)->Void)?
-    var eventHandler: ((String, Dictionary<String, Any>)->Void)?
+    var eventHandler: ((CommandType)->Void)?
     
     func start() -> Void {
         
@@ -65,7 +66,9 @@ class SocketManager {
                     if let type = commandData["type"] as? String {
                         switch type {
                         case "map":
-                            command = .map(MapCommand.init())
+                            command = .map(MapCommand.init(author: dataDict["author"] as! String?, latitude: commandData["lat"] as! Double, longtitude: commandData["long"] as! Double))
+//                        case "date":
+                            
                         default :
                             break
                         }

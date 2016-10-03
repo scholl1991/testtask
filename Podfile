@@ -6,7 +6,6 @@ use_frameworks!
 target 'TestTask' do
 
 pod 'Socket.IO-Client-Swift', '~> 8.0'
-pod 'SlackTextViewController', '~> 1.9'
 pod 'JSQMessagesViewController', '~> 7.3'
 
 end

@@ -12,7 +12,7 @@ import JSQMessagesViewController
 class MainViewController: JSQMessagesViewController {
 
     let socketManager = SocketManager()
-    var messages = [JSQMessage]()
+    var messages = [JSQMessageData]()
     
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
@@ -21,6 +21,7 @@ class MainViewController: JSQMessagesViewController {
         super.viewDidLoad()
         
         socketManager.messageHandler = handleMessage
+        socketManager.eventHandler = handleCommand
         socketManager.start()
         
         setupBubbles()
@@ -49,6 +50,9 @@ class MainViewController: JSQMessagesViewController {
         addMessage(id: author!, text: message!)
     }
     
+    func handleCommand(_ command: CommandType) -> Void {
+        
+    }
     
     func onAddEvent(_ sender: UIBarButtonItem) -> Void {
         socketManager.sendRandomCommand(author: senderId)
