@@ -1,0 +1,21 @@
+PODS:
+  - JSQMessagesViewController (7.3.4):
+    - JSQSystemSoundPlayer (~> 2.0.1)
+  - JSQSystemSoundPlayer (2.0.1)
+  - SlackTextViewController (1.9.4)
+  - Socket.IO-Client-Swift (8.0.0)
+
+DEPENDENCIES:
+  - JSQMessagesViewController (~> 7.3)
+  - SlackTextViewController (~> 1.9)
+  - Socket.IO-Client-Swift (~> 8.0)
+
+SPEC CHECKSUMS:
+  JSQMessagesViewController: 39fed975e3c9f8eba7292071e29eeb541d105e66
+  JSQSystemSoundPlayer: c5850e77a4363ffd374cd851154b9af93264ed8d
+  SlackTextViewController: d490f354dba963bc469a6b9ce3213978eaed67a5
+  Socket.IO-Client-Swift: b5f6c274ad849b2b73717546dcf29d48ead707eb
+
+PODFILE CHECKSUM: 3b5a54ef10f566dc83614faa701dd1f741bfdfb5
+
+COCOAPODS: 1.0.1

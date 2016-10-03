@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1B01E3E8EE8AED860198D7B0 /* Pods_TestTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101643FD7EF7CB2AA1E8E4C4 /* Pods_TestTask.framework */; };
+		B8AC4DC21DA2AC36008B32CF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AC4DC11DA2AC36008B32CF /* WelcomeViewController.swift */; };
 		EF85F9511D9A976900B054A3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF85F9501D9A976900B054A3 /* AppDelegate.swift */; };
-		EF85F9531D9A976900B054A3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF85F9521D9A976900B054A3 /* ViewController.swift */; };
+		EF85F9531D9A976900B054A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF85F9521D9A976900B054A3 /* MainViewController.swift */; };
 		EF85F9561D9A976900B054A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF85F9541D9A976900B054A3 /* Main.storyboard */; };
 		EF85F9581D9A976900B054A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF85F9571D9A976900B054A3 /* Assets.xcassets */; };
 		EF85F95B1D9A976900B054A3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF85F9591D9A976900B054A3 /* LaunchScreen.storyboard */; };
@@ -20,9 +21,10 @@
 		101643FD7EF7CB2AA1E8E4C4 /* Pods_TestTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TestTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3596AB7AFFAAB532B0467343 /* Pods-TestTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTask.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestTask/Pods-TestTask.debug.xcconfig"; sourceTree = "<group>"; };
 		AE28A9EB7B979CE51132E3D1 /* Pods-TestTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestTask.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestTask/Pods-TestTask.release.xcconfig"; sourceTree = "<group>"; };
+		B8AC4DC11DA2AC36008B32CF /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		EF85F94D1D9A976900B054A3 /* TestTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF85F9501D9A976900B054A3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EF85F9521D9A976900B054A3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EF85F9521D9A976900B054A3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		EF85F9551D9A976900B054A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF85F9571D9A976900B054A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF85F95A1D9A976900B054A3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -59,6 +61,44 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B820EF4B1DA2957D00408496 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EF85F9541D9A976900B054A3 /* Main.storyboard */,
+				EF85F9571D9A976900B054A3 /* Assets.xcassets */,
+				EF85F9591D9A976900B054A3 /* LaunchScreen.storyboard */,
+				EF85F95C1D9A976900B054A3 /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B820EF4D1DA295B900408496 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				B820EF4F1DA295D900408496 /* Model */,
+				B820EF4E1DA295CD00408496 /* UI */,
+				EF85F9501D9A976900B054A3 /* AppDelegate.swift */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		B820EF4E1DA295CD00408496 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EF85F9521D9A976900B054A3 /* MainViewController.swift */,
+				B8AC4DC11DA2AC36008B32CF /* WelcomeViewController.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		B820EF4F1DA295D900408496 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EFAF76DD1D9C462500C40FA7 /* SocketManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		EF85F9441D9A976900B054A3 = {
 			isa = PBXGroup;
 			children = (
@@ -80,13 +120,8 @@
 		EF85F94F1D9A976900B054A3 /* TestTask */ = {
 			isa = PBXGroup;
 			children = (
-				EF85F9501D9A976900B054A3 /* AppDelegate.swift */,
-				EF85F9521D9A976900B054A3 /* ViewController.swift */,
-				EF85F9541D9A976900B054A3 /* Main.storyboard */,
-				EF85F9571D9A976900B054A3 /* Assets.xcassets */,
-				EF85F9591D9A976900B054A3 /* LaunchScreen.storyboard */,
-				EF85F95C1D9A976900B054A3 /* Info.plist */,
-				EFAF76DD1D9C462500C40FA7 /* SocketManager.swift */,
+				B820EF4D1DA295B900408496 /* Sources */,
+				B820EF4B1DA2957D00408496 /* Resources */,
 			);
 			path = TestTask;
 			sourceTree = "<group>";
@@ -98,12 +133,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EF85F95F1D9A976900B054A3 /* Build configuration list for PBXNativeTarget "TestTask" */;
 			buildPhases = (
-				BB5B2D5E998F28626A914C32 /* Check Pods Manifest.lock */,
+				BB5B2D5E998F28626A914C32 /* [CP] Check Pods Manifest.lock */,
 				EF85F9491D9A976900B054A3 /* Sources */,
 				EF85F94A1D9A976900B054A3 /* Frameworks */,
 				EF85F94B1D9A976900B054A3 /* Resources */,
-				5AF6CB683EB743E097C252F1 /* Embed Pods Frameworks */,
-				4FF3B7000F1B38441D3CB602 /* Copy Pods Resources */,
+				5AF6CB683EB743E097C252F1 /* [CP] Embed Pods Frameworks */,
+				4FF3B7000F1B38441D3CB602 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -164,14 +199,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4FF3B7000F1B38441D3CB602 /* Copy Pods Resources */ = {
+		4FF3B7000F1B38441D3CB602 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,14 +214,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestTask/Pods-TestTask-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5AF6CB683EB743E097C252F1 /* Embed Pods Frameworks */ = {
+		5AF6CB683EB743E097C252F1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -194,14 +229,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TestTask/Pods-TestTask-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BB5B2D5E998F28626A914C32 /* Check Pods Manifest.lock */ = {
+		BB5B2D5E998F28626A914C32 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,7 +251,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF85F9531D9A976900B054A3 /* ViewController.swift in Sources */,
+				EF85F9531D9A976900B054A3 /* MainViewController.swift in Sources */,
+				B8AC4DC21DA2AC36008B32CF /* WelcomeViewController.swift in Sources */,
 				EFAF76DE1D9C462500C40FA7 /* SocketManager.swift in Sources */,
 				EF85F9511D9A976900B054A3 /* AppDelegate.swift in Sources */,
 			);
