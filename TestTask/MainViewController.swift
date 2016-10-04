@@ -14,6 +14,8 @@ class MainViewController: JSQMessagesViewController {
     let socketManager = SocketManager()
     var messages = [JSQMessageData]()
     
+    
+    
     var outgoingBubbleImageView: JSQMessagesBubbleImage!
     var incomingBubbleImageView: JSQMessagesBubbleImage!
     
@@ -46,16 +48,64 @@ class MainViewController: JSQMessagesViewController {
         finishReceivingMessage()
     }
 
-    func handleMessage(_ message: String?, author: String?) -> Void {
+    private func handleMessage(_ message: String?, author: String?) -> Void {
         addMessage(id: author!, text: message!)
     }
     
-    func handleCommand(_ command: CommandType) -> Void {
-        
+    private func handleCommand(_ command: CommandType) -> Void {
+        switch command {
+        case .map(let mapCommand):
+            let location = CLLocation.init(latitude: mapCommand.latitude, longitude: mapCommand.longtitude)
+            let item = JSQLocationMediaItem.init(location: location)
+            let message = JSQMessage.init(senderId: mapCommand.author, displayName: mapCommand.author, media: item)
+            messages.append(message!)
+            item?.setLocation(location, withCompletionHandler: {
+                self.finishReceivingMessage()
+            })
+            finishReceivingMessage()
+        case .complete(let completeCommand):
+            showOptions(options: completeCommand.values!, author: completeCommand.author!, title: "Have you completed?")
+        case .date(let dateCommand):
+            showOptions(options: dateCommand.values!, author: dateCommand.author!, title: "Please choose date")
+        case .rate(let rateCommand):
+            showOptions(options: rateCommand.values!, author: rateCommand.author!, title: "Please rate your experience")
+        default:
+            break
+        }
+    }
+    
+    private func showOptions(options: Array<String>, author: String, title: String) -> Void {
+        let item = OptionItem.init()
+        item.options = options
+        item.textOption = title
+        item.completion = onOption
+        let message = JSQMessage.init(senderId: author, displayName: author, media: item)
+        messages.append(message!)
+        finishReceivingMessage()
     }
     
     func onAddEvent(_ sender: UIBarButtonItem) -> Void {
         socketManager.sendRandomCommand(author: senderId)
+    }
+    
+    private func onOption (title: String, item: OptionItem) -> Void {
+        socketManager.sendMessage(message: title, author: senderId)
+
+        var index: Int?
+        for (curIndex, messageItem) in messages.enumerated() {
+            if let option = messageItem.media!() as? OptionItem {
+                if (option.dateCreation == item.dateCreation) {
+                    index = curIndex
+                }
+            }
+        }
+        
+        if index != nil {
+            let message = JSQMessage(senderId: senderId, displayName: senderId, text: title)
+            messages[index!] = message!
+            finishReceivingMessage()
+            finishSendingMessage()
+        }
     }
 }
 
@@ -79,7 +129,7 @@ extension MainViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, messageBubbleImageDataForItemAt indexPath: IndexPath!) -> JSQMessageBubbleImageDataSource! {
         let message = messages[indexPath.item]
-        if message.senderId == senderId {
+        if message.senderId() == senderId {
             return outgoingBubbleImageView
         } else {
             return incomingBubbleImageView
@@ -96,12 +146,16 @@ extension MainViewController {
         
         let message = messages[indexPath.item]
         
-        if message.senderId == senderId {
-            cell.textView!.textColor = UIColor.white
+        if message.senderId() == senderId {
+            if let textView = cell.textView {
+                textView.textColor = UIColor.white
+            }
             cell.cellTopLabel.textAlignment = .right
             cell.cellTopLabel.textInsets = UIEdgeInsetsMake(0.0, 0.0, 0.0, 15.0)
         } else {
-            cell.textView!.textColor = UIColor.black
+            if let textView = cell.textView {
+                textView.textColor = UIColor.black
+            }
             cell.cellTopLabel.textAlignment = .left
             cell.cellTopLabel.textInsets = UIEdgeInsetsMake(0.0, 15.0, 0.0, 0.0)
         }
@@ -111,16 +165,10 @@ extension MainViewController {
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, attributedTextForCellTopLabelAt indexPath: IndexPath!) -> NSAttributedString! {
         let message = messages[indexPath.item]
-        return NSAttributedString.init(string: message.senderDisplayName)
+        return NSAttributedString.init(string: message.senderDisplayName())
     }
     
     override func collectionView(_ collectionView: JSQMessagesCollectionView!, layout collectionViewLayout: JSQMessagesCollectionViewFlowLayout!, heightForCellTopLabelAt indexPath: IndexPath!) -> CGFloat {
         return 20.0
     }
-}
-
-// MARK: - custom cells
-
-extension MainViewController {
-    
 }
